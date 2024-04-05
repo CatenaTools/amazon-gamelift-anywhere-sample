@@ -89,15 +89,15 @@ You will need to manually approve the cdk deployment after `cdk deploy` command
 TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")                                
 INSTANCE_ID=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id)
 IP_ADDRESS=$(curl -H "X-aws-ec2-metadata-token: ${TOKEN}" http://169.254.169.254/latest/meta-data/public-ipv4)
-FLEET_ID=$(aws cloudformation describe-stacks --stack-name GameliftAnywhereStack --query "Stacks[0].Outputs[?OutputKey=='FleetId'].OutputValue" --output text)
-aws gamelift register-compute --compute-name ${INSTANCE_ID} --fleet-id ${FLEET_ID}  --ip-address ${IP_ADDRESS} --location cucustom-anywhere-location
+FLEET_ID=$(aws cloudformation describe-stacks --stack-name GameLiftAnywhereStack --query "Stacks[0].Outputs[?OutputKey=='FleetId'].OutputValue" --output text)
+aws gamelift register-compute --compute-name ${INSTANCE_ID} --fleet-id ${FLEET_ID}  --ip-address ${IP_ADDRESS} --location custom-anywhere-location
 
 ```
 
 4. Run the game server
 
 ```
-./gomoku-in-go -port 4000 -endpoint wss://ap-northeast-2.api.amazongamelift.com -fleet-id ${FLEET_ID} --host-id ${INSTANCE_ID}
+./gomoku-in-go -port 4000 -endpoint wss://us-east-1.api.amazongamelift.com -fleet-id ${FLEET_ID} --host-id ${INSTANCE_ID}
 ```
 
 6. Open another terminal and run python test client script. 
