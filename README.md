@@ -18,6 +18,7 @@ git clone https://github.com/aws-samples/amazon-gamelift-anywhere-sample.git
 
 2. Download GameLift SDK from the link below and unzip it.
 
+**Note! The repo contains the sdk by default at gomoku-game-server/gameliftserversdk, if you wish to update the sdk you may do so, but this step should not be required for most users.**
 ```
 cd amazon-gamelift-anywhere-sample
 wget https://gamelift-server-sdk-release.s3.us-west-2.amazonaws.com/go/GameLift-Go-ServerSDK-5.0.0.zip
