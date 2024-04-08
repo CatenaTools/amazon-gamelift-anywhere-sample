@@ -8,7 +8,7 @@ import struct
 import threading
 
 numOfPlayers = 2
-matchmakingConfigName="AnywhereDemoMatchmakingConfig"
+matchmakingConfigName="MatchmakingConfiguration"
 
 clients = [] # List of client
 threads = []
