@@ -94,9 +94,9 @@ for i in range (numOfPlayers):
     ConfigurationName = matchmakingConfigName,
     Players = [ { 'PlayerId' : str(clients[i]['playerId']), 'PlayerAttributes' : clients[i]['playerAttr'] } ]
   )
-  print("[player", i, "] start_matchmaking sent to Client Backend Service.")
+  print("[player", i, "] start_matchmaking sent to Client Backend Service for config ", matchmakingConfigName, ".")
   clients[i]['ticketId'] = match_response['MatchmakingTicket']['TicketId']
-  #print("ticketID:", clients[i]['ticketId'])
+  print("ticketID:", clients[i]['ticketId'])
   time.sleep(0.1)
 
 time.sleep(1)
@@ -108,7 +108,7 @@ while numOfConnected < numOfPlayers :
       match_response = gl_client.describe_matchmaking( TicketIds = [ clients[i]['ticketId']])
       match_ticket = match_response['TicketList'][0]
       clients[i]['TicketStatus'] = match_ticket['Status']
-      #print(match_response)
+      print(match_response)
       if clients[i]['TicketStatus'] == 'COMPLETED':
         clients[i]['ipaddr']       = match_ticket['GameSessionConnectionInfo']['IpAddress']
         clients[i]['port']         = match_ticket['GameSessionConnectionInfo']['Port']
